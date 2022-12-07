@@ -32,12 +32,8 @@ export const counter = new Component({
             },
             [
                 `Counter is: ${this.state.counter}`,
-                ...this.state.items.map((item) => {
-                    return h(
-                        'p',
-                        {},
-                        `${item}`
-                    )
+                ...this.state.items.map((item, index) => {
+                    return <p>index</p>
                 })
             ]
         )
