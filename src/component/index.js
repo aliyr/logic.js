@@ -2,8 +2,9 @@ import {patch, container} from "../init.js";
 
 export default class Component {
 
-    constructor(props) {
-        this.props = props
+    constructor(props = {props: {}, slot: null}) {
+        this.props = props.props
+        this.slot = props.slot
         this.state = this.stateInitiator.call(this, this.state())
         this.methods = this.methodsInitiator.call(this, this.methods)
         this.render = this.renderInitiator.call(this, this.render)

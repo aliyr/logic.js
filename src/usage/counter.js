@@ -8,7 +8,12 @@ class CounterItem extends Component {
     }
 
     render () {
-        return <div>{this.props.name}</div>
+        return (
+            <div>
+                <p>{this.props.name}</p>
+                {this.slot}
+            </div>
+        )
     }
 }
 
@@ -41,12 +46,21 @@ export class counter extends Component {
         return <div class={{counter: this.state.name === 'Gholi'}} on-click={() => {this.methods.addItem(); this.methods.changeCounter()}}>
             counter is: { this.state.counter }
             {...this.state.items.map((item) => {
-                return new CounterItem({name: item}).render()
+                return (
+                    <CounterItem props={{name: this.state.name}}>
+                        <div>
+                            <strong>{item}</strong>
+                            <p>Hi</p>
+                        </div>
+                    </CounterItem>
+                )
             })}
         </div>
     }
 
 }
+
+//return new CounterItem({ props: {name: 'passed prop'}, slot: <p>{item}</p>}).render()
 
 /*
  <div
@@ -55,7 +69,9 @@ export class counter extends Component {
     style="color: 'green'"
     >
       counter is: { this.state.counter }
-     <CounterItem props="{{}}"></CounterItem>
+     <CounterItem props={{name: this.state.name}}>
+        <p>{item}</p>
+     </CounterItem>
  </div>
 
  */
@@ -81,7 +97,7 @@ return h(
             [
                 `Counter is: ${this.state.counter}`,
                 ...this.state.items.map((item, index) => {
-                    return new counterItem({name: this.state.name}).render()
+                    return new counterItem({props: {name: this.state.name}, slot: {}}).render()
                 })
             ]
         )
