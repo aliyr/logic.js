@@ -3,4 +3,4 @@ import { counter } from "./usage/counter.js";
 
 const element = document.getElementById('root')
 
-renderApp(element, counter)
+renderApp(element, new counter())

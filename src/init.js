@@ -3,8 +3,7 @@ import {
     classModule,
     propsModule,
     styleModule,
-    eventListenersModule,
-    h,
+    eventListenersModule
 } from 'snabbdom'
 
 export const patch = init([

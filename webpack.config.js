@@ -35,6 +35,10 @@ module.exports = {
                         plugins: ['./babel-plugins/custom-jsx-plugin', '@babel/plugin-syntax-jsx']
                     }
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
             }
         ]
     },

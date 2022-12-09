@@ -2,17 +2,22 @@ import {patch, container} from "../init.js";
 
 export default class Component {
 
-    constructor(
-        {
-            state = {},
-            methods,
-            render
-        }
-    ) {
-        this.state = this.stateInitiator.call(this, state)
-        this.methods = this.methodsInitiator.call(this, methods)
-        this.render = this.renderInitiator.call(this, render)
+    constructor(props) {
+        this.props = props
+        this.state = this.stateInitiator.call(this, this.state())
+        this.methods = this.methodsInitiator.call(this, this.methods)
+        this.render = this.renderInitiator.call(this, this.render)
     }
+
+    state() {
+        return {}
+    }
+
+    methods() {
+        return {}
+    }
+
+    render() {}
 
     stateInitiator(initState) {
         return new Proxy(
