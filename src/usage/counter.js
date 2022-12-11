@@ -7,17 +7,26 @@ class CounterItem extends Component {
         super(props);
     }
 
+    methods() {
+        return {
+            onTrigger: (name) => {
+                const a = name.target.value
+                this.props.onTrigger(a)
+            }
+        }
+    }
+
     render () {
         return (
             <div>
-                <p>{this.props.name}</p>
+                <input value={this.props.name} on-input={this.methods.onTrigger}>{this.props.name}</input>
                 {this.slot}
             </div>
         )
     }
 }
 
-export class counter extends Component {
+export class Counter extends Component {
     constructor(props) {
         super(props);
     }
@@ -25,7 +34,7 @@ export class counter extends Component {
     state() {
         return {
             counter: 0,
-            items: [],
+            items: [1],
             name: 'Gholi'
         }
     }
@@ -38,19 +47,25 @@ export class counter extends Component {
             },
             addItem: () => {
                 this.state.items.push(this.state.counter)
+            },
+            setName: (name) => {
+                this.state.name = name
             }
         }
     }
 
     render() {
-        return <div class={{counter: this.state.name === 'Gholi'}} on-click={() => {this.methods.addItem(); this.methods.changeCounter()}}>
+        return <div
+            class={{counter: this.state.name === 'Gholi'}}
+            id='id'
+        >
             counter is: { this.state.counter }
             {...this.state.items.map((item) => {
                 return (
-                    <CounterItem props={{name: this.state.name}}>
+                    <CounterItem props={{name: this.state.name, onTrigger: (data)  => { this.methods.setName(data) }}}>
                         <div>
                             <strong>{item}</strong>
-                            <p>Hi</p>
+                            <p>{this.state.name}</p>
                         </div>
                     </CounterItem>
                 )
@@ -60,46 +75,6 @@ export class counter extends Component {
 
 }
 
-//return new CounterItem({ props: {name: 'passed prop'}, slot: <p>{item}</p>}).render()
+// new CounterItem({props: {}})
 
-/*
- <div
-    class="{{ counter: this.state.name === 'Gholi' }}"
-    on-click="this.methods.addItem(); this.methods.changeCounter()"
-    style="color: 'green'"
-    >
-      counter is: { this.state.counter }
-     <CounterItem props={{name: this.state.name}}>
-        <p>{item}</p>
-     </CounterItem>
- </div>
-
- */
-
-/*
-
-return h(
-            'div',
-            {
-                style: {
-                    color: 'green'
-                },
-                on: {
-                    click: () => {
-                        this.methods.addItem()
-                        this.methods.changeCounter()
-                    }
-                },
-                class: {
-                    counter: this.state.name === 'Gholi'
-                }
-            },
-            [
-                `Counter is: ${this.state.counter}`,
-                ...this.state.items.map((item, index) => {
-                    return new counterItem({props: {name: this.state.name}, slot: {}}).render()
-                })
-            ]
-        )
-
- */
+// h('div', { ... }, [....])

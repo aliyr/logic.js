@@ -1,6 +1,6 @@
 import { renderApp } from "./init.js";
-import { counter } from "./usage/counter.js";
+import { Counter } from "./usage/counter.js";
 
 const element = document.getElementById('root')
 
-renderApp(element, new counter())
+renderApp(element, <Counter />)

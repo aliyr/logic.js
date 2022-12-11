@@ -105,12 +105,12 @@ module.exports = function (babel) {
                                 t.objectExpression([
                                     // TODO can be improved by using property keys instead of index
                                     t.objectProperty(
-                                        t.identifier(openingElement.attributes[0].name.name),
-                                        openingElement.attributes[0].value.expression
+                                        t.identifier('props'),
+                                        openingElement.attributes[0] ? openingElement.attributes[0].value.expression : t.objectExpression([])
                                     ),
                                     t.objectProperty(
                                         t.identifier('slot'),
-                                        path.node.children[1]
+                                        path.node.children.length ? path.node.children[1] : t.objectExpression([])
                                     )
                                 ])
                             ]

@@ -21,16 +21,29 @@ export default class Component {
     render() {}
 
     stateInitiator(initState) {
-        return new Proxy(
-            initState,
-            {
-                set: (obj, prop, newVal) => {
-                    obj[prop] = newVal
-                    container.el = patch(container.el, this.render())
-                    return true
+
+        const fn = (state) => {
+            Object.keys(state).forEach(key => {
+                if (typeof state[key] === "object" || Array.isArray(this.state[key])) {
+                    state[key] = fn(state[key])
                 }
-            }
-        )
+            })
+
+            return new Proxy(
+                state,
+                {
+                    set: (obj, prop, newVal) => {
+                        obj[prop] = newVal
+                        container.el = patch(container.el, this.render())
+                        return true
+                    }
+                }
+            )
+        }
+
+        return fn(initState)
+
+
     }
 
     methodsInitiator(initMethods) {

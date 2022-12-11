@@ -18,5 +18,5 @@ export const container = {
 }
 
 export const renderApp = (element ,component) => {
-    container.el = patch(element, component.render())
+    container.el = patch(element, component)
 }
