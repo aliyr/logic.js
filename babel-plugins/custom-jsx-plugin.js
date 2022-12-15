@@ -98,7 +98,7 @@ module.exports = function (babel) {
 
                     // in case tagName is component
                 } else {
-                    callExpression = t.callExpression(t.memberExpression(
+                    callExpression = t.memberExpression(
                         t.newExpression(
                             t.identifier(tagName),
                             [
@@ -115,8 +115,8 @@ module.exports = function (babel) {
                                 ])
                             ]
                         ),
-                        t.identifier("render")
-                    ), [])
+                        t.identifier("currentNode")
+                    )
                 }
                 path.replaceWith(callExpression, path.node)
             },

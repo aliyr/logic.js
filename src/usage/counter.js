@@ -7,11 +7,22 @@ class CounterItem extends Component {
         super(props);
     }
 
+
+
+    state() {
+        return {
+            localState: 'Local',
+            arr: [1, 2, 3]
+        }
+    }
+
     methods() {
         return {
-            onTrigger: (name) => {
-                const a = name.target.value
-                this.props.onTrigger(a)
+            updateLocalState: (e) => {
+                this.state.localState = e.target.value
+            },
+            pushItem: () => {
+                this.state.arr.push('1')
             }
         }
     }
@@ -19,8 +30,17 @@ class CounterItem extends Component {
     render () {
         return (
             <div>
-                <input value={this.props.name} on-input={this.methods.onTrigger}>{this.props.name}</input>
-                {this.slot}
+                <p>
+                    <input value={this.state.localState} on-input={this.methods.updateLocalState} type="text"/>
+                    <strong>
+                        {this.state.localState}
+                    </strong>
+                    {
+                        ...this.state.arr.map((item) => {
+                            return <div on-click={this.methods.pushItem}>{item}</div>
+                        })
+                    }
+                </p>
             </div>
         )
     }
@@ -58,15 +78,13 @@ export class Counter extends Component {
         return <div
             class={{counter: this.state.name === 'Gholi'}}
             id='id'
+            on-click={this.methods.addItem}
         >
             counter is: { this.state.counter }
             {...this.state.items.map((item) => {
                 return (
-                    <CounterItem props={{name: this.state.name, onTrigger: (data)  => { this.methods.setName(data) }}}>
-                        <div>
-                            <strong>{item}</strong>
-                            <p>{this.state.name}</p>
-                        </div>
+                    <CounterItem>
+                        <div>Hi Gholi</div>
                     </CounterItem>
                 )
             })}

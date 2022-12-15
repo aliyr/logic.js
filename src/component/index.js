@@ -8,6 +8,10 @@ export default class Component {
         this.state = this.stateInitiator.call(this, this.state())
         this.methods = this.methodsInitiator.call(this, this.methods)
         this.render = this.renderInitiator.call(this, this.render)
+        // "this.currentNode" and "this.prevNode" used for change detection
+        // "this.currentNode" would be used for showing current vdom
+        this.currentNode = this.render()
+        this.prevNode = {}
     }
 
     state() {
@@ -34,7 +38,7 @@ export default class Component {
                 {
                     set: (obj, prop, newVal) => {
                         obj[prop] = newVal
-                        container.el = patch(container.el, this.render())
+                        this.update()
                         return true
                     }
                 }
@@ -44,6 +48,13 @@ export default class Component {
         return fn(initState)
 
 
+    }
+
+    update() {
+        this.prevNode = this.currentNode;
+        this.currentNode = this.render();
+
+        this.currentNode = patch(this.prevNode, this.currentNode);
     }
 
     methodsInitiator(initMethods) {
