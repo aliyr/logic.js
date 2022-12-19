@@ -1,4 +1,4 @@
-import { h } from 'snabbdom'
+
 import Component from '../component/index.js'
 import './counter.css'
 
@@ -6,8 +6,6 @@ class CounterItem extends Component {
     constructor(props) {
         super(props);
     }
-
-
 
     state() {
         return {
@@ -21,7 +19,8 @@ class CounterItem extends Component {
             updateLocalState: (e) => {
                 this.state.localState = e.target.value
             },
-            pushItem: () => {
+            pushItem: (e) => {
+                e.stopPropagation()
                 this.state.arr.push('1')
             }
         }
@@ -75,6 +74,8 @@ export class Counter extends Component {
     }
 
     render() {
+        console.log(this)
+
         return <div
             class={{counter: this.state.name === 'Gholi'}}
             id='id'
@@ -92,7 +93,3 @@ export class Counter extends Component {
     }
 
 }
-
-// new CounterItem({props: {}})
-
-// h('div', { ... }, [....])

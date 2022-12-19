@@ -3,7 +3,8 @@ import {
     classModule,
     propsModule,
     styleModule,
-    eventListenersModule
+    eventListenersModule,
+    h
 } from 'snabbdom'
 
 export const patch = init([
@@ -17,6 +18,10 @@ export const container = {
     el: null
 }
 
-export const renderApp = (element ,component) => {
-    container.el = patch(element, component)
+window.h = h
+
+export const Logic = {
+    render: function (element ,component) {
+        container.el = patch(element, component)
+    }
 }

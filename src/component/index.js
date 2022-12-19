@@ -1,4 +1,4 @@
-import {patch, container} from "../init.js";
+import {patch} from "../init.js";
 
 export default class Component {
 
