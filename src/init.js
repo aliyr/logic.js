@@ -20,8 +20,16 @@ export const container = {
 
 window.h = h
 
-export const Logic = {
-    render: function (element ,component) {
-        container.el = patch(element, component)
+export class Logic {
+    constructor (args = {
+        container: HTMLElement,
+        rootComponent: null
+    }) {
+        this.container = args.container
+        this.rootComponent = args.rootComponent
+    }
+
+    render () {
+        container.el = patch(this.container, this.rootComponent)
     }
 }
