@@ -4,6 +4,7 @@ import {
     propsModule,
     styleModule,
     eventListenersModule,
+    datasetModule,
     h
 } from 'snabbdom'
 
@@ -11,6 +12,7 @@ export const patch = init([
     classModule,
     propsModule,
     styleModule,
+    datasetModule,
     eventListenersModule,
 ])
 
