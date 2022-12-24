@@ -89,7 +89,7 @@ module.exports = function (babel) {
                         }
                     })
 
-                    const callee = t.memberExpression(t.identifier('window'), t.identifier("h"));
+                    const callee = t.memberExpression(t.memberExpression(t.identifier('window'), t.identifier('$$lo')), t.identifier("h"));
                     callExpression = t.callExpression(callee, args);
 
                     callExpression.arguments = callExpression.arguments.concat(children);

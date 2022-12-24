@@ -74,7 +74,6 @@ export class Counter extends Component {
     }
 
     render() {
-        console.log(this)
 
         return <div
             class={{counter: this.state.name === 'Gholi'}}

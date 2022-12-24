@@ -5,6 +5,7 @@ export default class Component {
     constructor(props = {props: {}, slot: null}) {
         this.props = props.props
         this.slot = props.slot
+        this.$$lo = window.$$lo
         this.state = this.stateInitiator.call(this, this.state())
         this.methods = this.methodsInitiator.call(this, this.methods)
         this.render = this.renderInitiator.call(this, this.render)
