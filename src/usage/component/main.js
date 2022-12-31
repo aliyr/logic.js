@@ -1,5 +1,5 @@
 import Component from "../../component";
-import { Counter } from "../counter";
+import { Counter } from "./counter/counter";
 
 export class Main extends Component {
     constructor(props) {

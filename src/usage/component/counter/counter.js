@@ -1,5 +1,5 @@
 
-import Component from '../component/index.js'
+import Component from '../../../component'
 import './counter.css'
 
 class CounterItem extends Component {
