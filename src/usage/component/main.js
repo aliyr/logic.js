@@ -1,5 +1,6 @@
-import Component from "../../component";
-import { Counter } from "./counter/counter";
+import Component from "../../component/index";
+import {RouterOutlet} from "../../routing/router-outlet";
+import {RouterLink} from "../../routing/router-link";
 
 export class Main extends Component {
     constructor(props) {
@@ -9,8 +10,25 @@ export class Main extends Component {
     render() {
         return (
             <div>
-                <Counter />
-                {this.$$lo.test}
+                <div>
+                    <RouterLink props={{to: '/'}}>
+                        <span>
+                            Home
+                        </span>
+                    </RouterLink>
+                    <RouterLink props={{to: '/product'}}>
+                        <span>
+                            Product
+                        </span>
+                    </RouterLink>
+                    <RouterLink props={{to: '/profile'}}>
+                        <span>
+                            Profile
+                        </span>
+                    </RouterLink>
+                </div>
+                <hr/>
+                <RouterOutlet />
             </div>
         )
     }

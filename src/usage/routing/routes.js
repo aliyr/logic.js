@@ -2,10 +2,15 @@ import {Profile} from "../component/profile";
 import {ProfileDetail} from "../component/profile/detail";
 import {Product} from "../component/product";
 import {ProductDetail} from "../component/product/detail";
+import {Home} from "../component/home";
 
 export const routes = [
     {
-        path: 'profile',
+        path: '/',
+        template: Home
+    },
+    {
+        path: '/profile',
         template: Profile,
         children: [
             {
@@ -15,7 +20,7 @@ export const routes = [
         ]
     },
     {
-        path: 'product',
+        path: '/product',
         template: Product,
         children: [
             {
