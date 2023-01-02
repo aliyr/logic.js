@@ -3,6 +3,7 @@ import {ProfileDetail} from "@logic/usage/component/profile/detail";
 import {Product} from "@logic/usage/component/product";
 import {ProductDetail} from "@logic/usage/component/product/detail";
 import {Home} from "@logic/usage/component/home";
+import {ProductList} from "@logic/usage/component/product/list";
 
 export const routes = [
     {
@@ -34,7 +35,7 @@ export const routes = [
             },
             {
                 path: '/list',
-                template: ProductDetail,
+                template: ProductList,
                 name: 'productList'
             }
         ]

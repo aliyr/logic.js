@@ -6,13 +6,19 @@ export class Router {
 
         this.createAddLocationEvent()
 
-        this.loadRoute(window.location.pathname)
+        this.loadRoute({path: window.location.pathname})
     }
 
-    loadRoute(path) {
+    loadRoute({path = null, name = null, params = {}}) {
 
-        this.activeRoute = this.routes.find(r => r.path === path)
-        window.history.pushState({}, '', path)
+        this.activeRoute = this.routes.find(r => {
+            if (name) {
+                return r.name === name
+            } else if (path) {
+                return r.path === path
+            }
+        })
+        window.history.pushState({}, '', this.activeRoute.path)
 
     }
 

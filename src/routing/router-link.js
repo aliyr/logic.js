@@ -8,7 +8,7 @@ export class RouterLink extends Component {
     methods() {
         return {
             navigate: () => {
-                this.$$lo.router.loadRoute(this.props.to)
+                this.$$lo.router.loadRoute(this.props)
             }
         }
     }

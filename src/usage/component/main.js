@@ -11,17 +11,29 @@ export class Main extends Component {
         return (
             <div>
                 <div>
-                    <RouterLink props={{to: '/'}}>
+                    <RouterLink props={
+                        {
+                            name: 'home'
+                        }
+                    }>
                         <span>
                             Home
                         </span>
                     </RouterLink>
-                    <RouterLink props={{to: '/product'}}>
+                    <RouterLink props={
+                        {
+                            name: 'product'
+                        }
+                    }>
                         <span>
                             Product
                         </span>
                     </RouterLink>
-                    <RouterLink props={{to: '/profile'}}>
+                    <RouterLink props={
+                        {
+                            name: 'profile'
+                        }
+                    }>
                         <span>
                             Profile
                         </span>
