@@ -8,29 +8,34 @@ export const routes = [
     {
         path: '/',
         template: Home,
+        name: 'home'
     },
     {
         path: '/profile',
         template: Profile,
+        name: 'profile',
         children: [
             {
                 path: '/purchases',
-                template: ProfileDetail
+                template: ProfileDetail,
+                name: 'profilePurchases'
             }
         ]
     },
     {
         path: '/product',
         template: Product,
-        name: '',
+        name: 'product',
         children: [
             {
                 path: '/details/:id',
-                template: ProductDetail
+                template: ProductDetail,
+                name: 'productDetail',
             },
             {
                 path: '/list',
-                template: ProductDetail
+                template: ProductDetail,
+                name: 'productList'
             }
         ]
     },
