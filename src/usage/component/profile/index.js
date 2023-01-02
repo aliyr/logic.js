@@ -1,4 +1,4 @@
-import Component from "../../../component";
+import Component from "@logic/component";
 
 export class Profile extends Component {
     constructor(props) {

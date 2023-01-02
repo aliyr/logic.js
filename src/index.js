@@ -1,7 +1,7 @@
-import { logic } from "./init.js";
-import { Router } from "./routing/router.js";
-import { Main } from "./usage/component/main";
-import {routes} from "./usage/routing/routes";
+import { logic } from "@logic/init.js";
+import { Router } from "@logic/routing/router.js";
+import { Main } from "@logic/usage/component/main";
+import {routes} from "@logic/usage/routing/routes";
 
 const element = document.getElementById('root')
 

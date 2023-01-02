@@ -1,20 +1,20 @@
-import {Profile} from "../component/profile";
-import {ProfileDetail} from "../component/profile/detail";
-import {Product} from "../component/product";
-import {ProductDetail} from "../component/product/detail";
-import {Home} from "../component/home";
+import {Profile} from "@logic/usage/component/profile";
+import {ProfileDetail} from "@logic/usage/component/profile/detail";
+import {Product} from "@logic/usage/component/product";
+import {ProductDetail} from "@logic/usage/component/product/detail";
+import {Home} from "@logic/usage/component/home";
 
 export const routes = [
     {
         path: '/',
-        template: Home
+        template: Home,
     },
     {
         path: '/profile',
         template: Profile,
         children: [
             {
-                path: '$id',
+                path: '/purchases',
                 template: ProfileDetail
             }
         ]
@@ -22,9 +22,14 @@ export const routes = [
     {
         path: '/product',
         template: Product,
+        name: '',
         children: [
             {
-                path: '$id',
+                path: '/details/:id',
+                template: ProductDetail
+            },
+            {
+                path: '/list',
                 template: ProductDetail
             }
         ]

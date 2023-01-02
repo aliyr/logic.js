@@ -1,4 +1,4 @@
-import Component from "../../../component";
+import Component from "@logic/component";
 import {Counter} from "../counter/counter";
 
 export class Home extends Component {

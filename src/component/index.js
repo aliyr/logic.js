@@ -1,4 +1,4 @@
-import {patch} from "../init.js";
+import {patch} from "@logic/init.js";
 
 export default class Component {
 

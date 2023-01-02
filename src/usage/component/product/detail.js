@@ -1,4 +1,4 @@
-import Component from "../../../component";
+import Component from "@logic/component";
 
 export class ProductDetail extends Component {
     constructor(props) {
@@ -8,7 +8,7 @@ export class ProductDetail extends Component {
     render() {
         return (
             <div>
-                product detail page
+                Product Detail page
             </div>
         )
     }

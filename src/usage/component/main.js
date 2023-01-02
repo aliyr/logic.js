@@ -1,6 +1,6 @@
-import Component from "../../component/index";
-import {RouterOutlet} from "../../routing/router-outlet";
-import {RouterLink} from "../../routing/router-link";
+import Component from "@logic/component/index";
+import {RouterOutlet} from "@logic/routing/router-outlet";
+import {RouterLink} from "@logic/routing/router-link";
 
 export class Main extends Component {
     constructor(props) {

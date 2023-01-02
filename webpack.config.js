@@ -15,6 +15,13 @@ module.exports = {
         },
         historyApiFallback: true,
     },
+    resolve: {
+        modules: [path.resolve(__dirname, './src'), 'node_modules'],
+        extensions: ['.js', '.jsx', '.json'],
+        alias: {
+            '@logic': path.resolve(__dirname, './src')
+        }
+    },
     devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({

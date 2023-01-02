@@ -1,5 +1,5 @@
 
-import Component from '../../../component'
+import Component from '@logic/component'
 import './counter.css'
 
 class CounterItem extends Component {

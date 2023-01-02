@@ -1,6 +1,6 @@
 import Component from "@logic/component";
 
-export class Product extends Component {
+export class ProductList extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,8 +8,7 @@ export class Product extends Component {
     render() {
         return (
             <div>
-                product main page
-                {/*<RouterOutlet />*/}
+                Product List page
             </div>
         )
     }
