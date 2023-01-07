@@ -2,7 +2,13 @@
 export class Router {
     constructor(routes) {
         this.routes = routes
-        this.activeRoute = null
+        this.routeConfig = {
+            rawRoute: '',
+            route: '',
+            routeTree: {
+                root: null
+            }
+        }
 
         this.manipulateRoutes()
 
@@ -13,14 +19,52 @@ export class Router {
 
     loadRoute({path = null, name = null, params = {}}) {
 
-        this.activeRoute = this.routes.find(r => {
+        this.routeConfig = {
+            rawRoute: '',
+            route: '',
+            routeTree: {
+                root: null
+            }
+        }
+
+        this.routeConfig.rawRoute = this.routes.find(r => {
             if (name) {
                 return r.name === name
             } else if (path) {
-                return r.path === path
+                return r.fullRoute === path
             }
-        })
-        window.history.pushState({}, '', this.activeRoute.path)
+        }).fullRoute
+
+        const paramsKeyArr = Object.keys(params)
+        if (paramsKeyArr.length) {
+            this.routeConfig.route = this.routeConfig.rawRoute
+            paramsKeyArr.forEach(rKey => {
+                this.routeConfig.route = this.routeConfig.route.replace(`:${rKey}`, params[rKey])
+            })
+        } else {
+            this.routeConfig.route = this.routeConfig.rawRoute
+        }
+
+        let routeParts = this.routeConfig.rawRoute.split('/')
+        routeParts.shift()
+        let currentRoute = ""
+        for (let i = 0; i < routeParts.length; i++) {
+            currentRoute += `/${routeParts[i]}`
+            const currentRouteObj = this.routes.find(p => p.fullRoute === currentRoute)
+
+            const treeKeyArr = Object.keys(this.routeConfig.routeTree)
+
+            this.routeConfig.routeTree[treeKeyArr[treeKeyArr.length - 1]] = currentRouteObj
+
+            if (i !== routeParts.length - 1) {
+                this.routeConfig.routeTree[currentRouteObj.name] = null
+            }
+        }
+        window.history.pushState({}, '', this.routeConfig.route)
+
+    }
+
+    updateRouteTree() {
 
     }
 
@@ -44,7 +88,9 @@ export class Router {
             return {
                 ...item,
                 fullRoute: parentRoute + item.path,
-                children: this.addFullPath(item.children, parentRoute + item.path)
+                ...(item.children ? {
+                    children: this.addFullPath(item.children, parentRoute + item.path)
+                } : {})
             }
         })
     }
@@ -58,7 +104,6 @@ export class Router {
                     modifiedRoutes.push(r)
                 } else {
                     pushRoutesToRoot(r.children)
-                    delete r.children
                     modifiedRoutes.push(r)
                 }
             })

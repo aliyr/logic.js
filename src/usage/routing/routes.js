@@ -4,6 +4,7 @@ import {Product} from "@logic/usage/component/product";
 import {ProductDetail} from "@logic/usage/component/product/detail";
 import {Home} from "@logic/usage/component/home";
 import {ProductList} from "@logic/usage/component/product/list";
+import {ProductSlug} from "@logic/usage/component/product/slug";
 
 export const routes = [
     {
@@ -29,9 +30,16 @@ export const routes = [
         name: 'product',
         children: [
             {
-                path: '/details/:id',
+                path: '/:id',
                 template: ProductDetail,
                 name: 'productDetail',
+                children: [
+                    {
+                        path: '/:slug',
+                        template: ProductSlug,
+                        name: 'productSlug'
+                    }
+                ]
             },
             {
                 path: '/list',

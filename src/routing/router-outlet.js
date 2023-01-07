@@ -5,6 +5,7 @@ export class RouterOutlet extends Component {
         super(props);
 
         this.methods.checkOnLocationChange()
+        this.props.parent = props.props.parent || "root"
 
     }
 
@@ -17,7 +18,11 @@ export class RouterOutlet extends Component {
     render() {
         return (
             <div>
-                {this.state.currentNode || new this.$$lo.router.activeRoute.template().currentNode}
+                {
+                    this.state.currentNode ||
+                    this.$$lo.router.routeConfig.routeTree[this.props.parent] ?
+                    new this.$$lo.router.routeConfig.routeTree[this.props.parent].template().currentNode : ""
+                }
             </div>
         )
     }
@@ -26,7 +31,9 @@ export class RouterOutlet extends Component {
         return {
             checkOnLocationChange: () => {
                 window.addEventListener('locationchange', () => {
-                    this.state.currentNode = new this.$$lo.router.activeRoute.template().currentNode
+                    this.state.currentNode = ""
+                    this.state.currentNode = this.$$lo.router.routeConfig.routeTree[this.props.parent] ?
+                        new this.$$lo.router.routeConfig.routeTree[this.props.parent].template().currentNode : ""
                 });
             }
         }

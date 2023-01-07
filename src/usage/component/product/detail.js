@@ -1,4 +1,5 @@
 import Component from "@logic/component";
+import {RouterOutlet} from "@logic/routing/router-outlet";
 
 export class ProductDetail extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ export class ProductDetail extends Component {
         return (
             <div>
                 Product Detail page
+                <RouterOutlet props={{parent: 'productDetail'}} />
             </div>
         )
     }

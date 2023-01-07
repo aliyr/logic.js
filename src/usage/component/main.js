@@ -40,7 +40,7 @@ export class Main extends Component {
                     </RouterLink>
                 </div>
                 <hr/>
-                <RouterOutlet />
+                <RouterOutlet props={{parent: 'root'}} />
             </div>
         )
     }

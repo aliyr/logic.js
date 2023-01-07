@@ -1,5 +1,6 @@
 import Component from "@logic/component";
 import {RouterLink} from "@logic/routing/router-link";
+import {RouterOutlet} from "@logic/routing/router-outlet";
 
 export class Product extends Component {
     constructor(props) {
@@ -31,7 +32,20 @@ export class Product extends Component {
                             list
                         </span>
                 </RouterLink>
-                {/*<RouterOutlet />*/}
+                <RouterLink props={
+                    {
+                        name: 'productSlug',
+                        params: {
+                            id: 1,
+                            slug: 'slug'
+                        }
+                    }
+                }>
+                        <span>
+                            product slug
+                        </span>
+                </RouterLink>
+                <RouterOutlet props={{parent: 'product'}} />
             </div>
         )
     }
